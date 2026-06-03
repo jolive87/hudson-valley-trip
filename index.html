@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hudson Valley Birthday Trip - June 6-7, 2026</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d28;
+    --card-alt: #222536;
+    --accent: #c9a87c;
+    --accent2: #7eb8a0;
+    --accent3: #8b9cf7;
+    --text: #e8e6e1;
+    --text-dim: #9b9a97;
+    --border: #2d3045;
+    --red: #e07070;
+    --green: #7eb8a0;
+    --yellow: #d4b76a;
+    --blue: #7ca8d4;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 80px;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1a2a3a 0%, #2a1a2a 50%, #1a2a2a 100%);
+    padding: 40px 20px 30px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+  }
+  .hero h1 { font-size: 1.8em; color: var(--accent); margin-bottom: 4px; }
+  .hero .subtitle { color: var(--text-dim); font-size: 0.95em; }
+  .hero .date-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
+
+  /* Nav tabs */
+  .nav {
+    display: flex;
+    overflow-x: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav button {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    padding: 12px 16px;
+    font-size: 0.82em;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+  .nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .tab-content { display: none; padding: 16px; max-width: 800px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+  }
+  .card-alt { background: var(--card-alt); }
+  .card h3 { color: var(--accent); font-size: 1.05em; margin-bottom: 6px; }
+  .card h4 { color: var(--accent2); font-size: 0.95em; margin-bottom: 4px; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 36px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .t-item {
+    position: relative;
+    margin-bottom: 20px;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+  }
+  .t-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 18px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .t-time {
+    font-size: 0.8em;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .t-title { font-size: 1em; font-weight: 700; margin: 2px 0 4px; }
+  .t-desc { font-size: 0.88em; color: var(--text-dim); }
+  .t-item.highlight { border-color: var(--accent); background: linear-gradient(135deg, var(--card) 0%, #2a2520 100%); }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-size: 0.72em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-right: 4px;
+    margin-top: 6px;
+  }
+  .tag-free { background: #1a3a2a; color: var(--green); }
+  .tag-cost { background: #3a2a1a; color: var(--yellow); }
+  .tag-book { background: #2a1a3a; color: var(--accent3); }
+  .tag-food { background: #3a1a2a; color: #d48ba0; }
+  .tag-warn { background: #3a2020; color: var(--red); }
+
+  /* Links */
+  a { color: var(--accent3); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82em;
+    color: var(--accent3);
+    margin-top: 6px;
+  }
+  .phone-link { color: var(--accent2); font-size: 0.88em; }
+
+  /* Budget table */
+  .budget-table { width: 100%; border-collapse: collapse; font-size: 0.88em; }
+  .budget-table th { text-align: left; color: var(--accent); padding: 8px 6px; border-bottom: 1px solid var(--border); }
+  .budget-table td { padding: 8px 6px; border-bottom: 1px solid var(--border); }
+  .budget-table .total-row { font-weight: 700; color: var(--accent); border-top: 2px solid var(--accent); }
+  .budget-table .est { color: var(--text-dim); font-size: 0.9em; }
+
+  /* Checklist */
+  .checklist label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+  .checklist input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .checklist input:checked + span { text-decoration: line-through; color: var(--text-dim); }
+
+  /* Section headers */
+  .section-header {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 20px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header .icon { margin-right: 6px; }
+
+  /* Info boxes */
+  .info-box {
+    background: #1a2530;
+    border-left: 3px solid var(--blue);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 0.88em;
+  }
+  .warn-box {
+    background: #2a1a1a;
+    border-left: 3px solid var(--red);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 0.88em;
+  }
+  .success-box {
+    background: #1a2a20;
+    border-left: 3px solid var(--green);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 0.88em;
+  }
+
+  /* Collapsible */
+  details { margin-bottom: 10px; }
+  details summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent2);
+    padding: 8px 0;
+    font-size: 0.95em;
+  }
+  details[open] summary { margin-bottom: 8px; }
+
+  /* Quick actions */
+  .action-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85em;
+    margin: 4px 4px 4px 0;
+    text-decoration: none;
+  }
+  .action-btn:hover { opacity: 0.9; text-decoration: none; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.4em; }
+    .nav button { padding: 10px 12px; font-size: 0.78em; }
+    .tab-content { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="subtitle">Happy Birthday, Beautiful</div>
+  <h1>Hudson Valley Getaway</h1>
+  <div class="subtitle">Cold Spring &amp; Beacon, NY</div>
+  <div class="date-badge">June 6-7, 2026</div>
+</div>
+
+<div class="nav" id="nav">
+  <button class="active" onclick="showTab('overview')">Overview</button>
+  <button onclick="showTab('friday')">Friday Night</button>
+  <button onclick="showTab('saturday')">Saturday</button>
+  <button onclick="showTab('sunday')">Sunday</button>
+  <button onclick="showTab('food')">Dining</button>
+  <button onclick="showTab('lodging')">Lodging</button>
+  <button onclick="showTab('history')">History</button>
+  <button onclick="showTab('budget')">Budget</button>
+  <button onclick="showTab('packing')">Packing</button>
+  <button onclick="showTab('actions')">Book Now</button>
+</div>
+
+<!-- ==================== OVERVIEW ==================== -->
+<div class="tab-content active" id="overview">
+  <div class="section-header"><span class="icon">&#9728;</span> Trip at a Glance</div>
+
+  <div class="card">
+    <h3>Weather Forecast</h3>
+    <p><strong>Saturday June 6:</strong> High 79&deg;F / Low 60&deg;F &mdash; Warm, possibly humid</p>
+    <p><strong>June averages:</strong> Highs 74-81&deg;F, Lows 53-60&deg;F. June is the wettest month (~5" rain). Pack a light rain layer.</p>
+    <p style="margin-top:8px"><strong>Sunrise:</strong> 5:23 AM &nbsp;|&nbsp; <strong>Sunset:</strong> 8:26 PM &nbsp;|&nbsp; <strong>Daylight:</strong> ~15 hours</p>
+  </div>
+
+  <div class="card">
+    <h3>Getting There</h3>
+    <p><strong>From:</strong> Astoria, Queens &rarr; <strong>To:</strong> Cold Spring, NY</p>
+    <p><strong>Distance:</strong> ~62 miles one way</p>
+    <p><strong>Best Route (toll-free):</strong> Cross Bronx Expy &rarr; Major Deegan (I-87) &rarr; Saw Mill River Pkwy &rarr; Taconic State Pkwy North &rarr; Exit Route 301 West &rarr; Cold Spring</p>
+    <a class="map-link" href="https://www.google.com/maps/dir/Astoria,+Queens,+NY/Cold+Spring,+NY+10516" target="_blank">&#128205; Open in Google Maps</a>
+    <div class="info-box" style="margin-top:10px">
+      <strong>Drive times:</strong><br>
+      Friday 6-7 PM: ~2 - 2.5 hrs (rush hour)<br>
+      Saturday 4:30 AM: ~1 hr 15 min (no traffic)<br>
+      Sunday 2-3 PM home: ~1.5 hrs
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Gas Strategy</h3>
+    <p><strong>Fill up in Astoria before leaving:</strong></p>
+    <p>BP, 107-10 Astoria Blvd (24 hrs) &nbsp;|&nbsp; Sunoco, 30-02 Astoria Blvd</p>
+    <div class="warn-box">No gas stations on the Taconic Parkway itself. Fill up before getting on it. Gas near Cold Spring is limited (Cold Spring Citgo, 27 Chestnut St).</div>
+    <p style="margin-top:8px"><strong>Gas prices (June 2026):</strong> ~$4.52/gal NYC area<br>
+    <strong>Round trip ~130 mi &divide; 25 MPG = ~5.2 gal &times; $4.52 = ~$24</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Tolls</h3>
+    <table class="budget-table">
+      <tr><th>Route</th><th>Round Trip</th></tr>
+      <tr><td>Taconic route (Saw Mill &rarr; Taconic)</td><td style="color:var(--green);font-weight:700">$0 (toll-free!)</td></tr>
+      <tr><td>I-87 Thruway + Route 9 (via Cross Bronx)</td><td>~$5 E-ZPass</td></tr>
+      <tr><td>RFK Bridge + Thruway + Route 9</td><td>~$18 E-ZPass</td></tr>
+    </table>
+    <div class="success-box" style="margin-top:8px"><strong>Recommendation:</strong> Take the Taconic route. It's toll-free, scenic, and only ~5 min longer than the Thruway.</div>
+  </div>
+
+  <div class="card">
+    <h3>Farmers Markets</h3>
+    <p><strong>Saturday:</strong> Cold Spring Farmers' Market @ Boscobel, 1601 Route 9D, Garrison &mdash; 8:30 AM - 1:00 PM</p>
+    <a class="map-link" href="https://www.google.com/maps/search/Boscobel+House+and+Gardens+1601+Route+9D+Garrison+NY" target="_blank">&#128205; Map</a>
+    <p style="margin-top:8px"><strong>Sunday:</strong> Beacon Farmers' Market @ 223 Main St, Beacon &mdash; 10:00 AM - 3:00 PM</p>
+    <a class="map-link" href="https://www.google.com/maps/search/223+Main+Street+Beacon+NY" target="_blank">&#128205; Map</a>
+    <p style="margin-top:8px;font-size:0.85em;color:var(--text-dim)">Both markets: fresh produce, artisan cheese, baked goods, honey, maple syrup, crafts, local wines</p>
+  </div>
+</div>
+
+<!-- ==================== FRIDAY NIGHT ==================== -->
+<div class="tab-content" id="friday">
+  <div class="section-header"><span class="icon">&#127769;</span> Friday Night &mdash; June 5</div>
+
+  <div class="card card-alt">
+    <h4>Option A: Leave Friday Evening (Recommended)</h4>
+    <p>Leave Astoria ~6:30-7:00 PM after work. Arrive Cold Spring ~8:30-9:00 PM.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">6:00 PM</div>
+      <div class="t-title">Fill Up Gas in Astoria</div>
+      <div class="t-desc">BP, 107-10 Astoria Blvd (24 hrs). Top off before hitting the road.</div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">6:30 PM</div>
+      <div class="t-title">Depart Queens</div>
+      <div class="t-desc">Take Cross Bronx Expy &rarr; Major Deegan &rarr; Saw Mill &rarr; Taconic North &rarr; Route 301 West into Cold Spring. Expect ~2 hours in Friday rush.</div>
+      <a class="map-link" href="https://www.google.com/maps/dir/Astoria,+Queens,+NY/Cold+Spring,+NY+10516" target="_blank">&#128205; Navigate</a>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">8:30 PM</div>
+      <div class="t-title">Arrive &amp; Check Into Lodging</div>
+      <div class="t-desc">Drop bags, freshen up. Pig Hill Inn check-in: 3-7 PM (call ahead if arriving after 7).</div>
+    </div>
+
+    <div class="t-item highlight">
+      <div class="t-time">9:00 PM</div>
+      <div class="t-title">Late Dinner: Hudson House River Inn</div>
+      <div class="t-desc">Open until 10 PM on Friday. Get a table in the River Room, order lobster bisque ($16), crabcakes ($21), and a bottle of wine. River views under the stars as your weekend begins.</div>
+      <p><a class="phone-link" href="tel:8452659355">&#128222; (845) 265-9355</a></p>
+      <a class="map-link" href="https://www.google.com/maps/search/Hudson+House+River+Inn+2+Main+Street+Cold+Spring+NY" target="_blank">&#128205; 2 Main Street, Cold Spring</a>
+      <span class="tag tag-cost">~$80 for two</span>
+      <span class="tag tag-book">Resy</span>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">10:30 PM</div>
+      <div class="t-title">Walk the Waterfront</div>
+      <div class="t-desc">Stroll to the gazebo at the end of Main Street. Night views of Storm King Mountain across the moonlit Hudson. Quiet, romantic, just the two of you.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card card-alt">
+    <h4>Option B: Leave Saturday Pre-Dawn</h4>
+    <p>Leave Astoria ~4:30 AM. Arrive Cold Spring ~5:45 AM. Catch sunrise at 5:23 AM from Little Stony Point or the Cold Spring waterfront.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">4:30 AM</div>
+      <div class="t-title">Depart Queens</div>
+      <div class="t-desc">Zero traffic. Same Taconic route. ~1 hr 15 min drive. Bring coffee and pastries for the car.</div>
+    </div>
+    <div class="t-item highlight">
+      <div class="t-time">5:45 AM</div>
+      <div class="t-title">Sunrise at Cold Spring Waterfront</div>
+      <div class="t-desc">Sunrise is at 5:23 AM &mdash; you'll catch golden hour light over the Hudson and Storm King. Walk to the gazebo or drive 1 mile north to Little Stony Point beach for an even more dramatic view.</div>
+      <a class="map-link" href="https://www.google.com/maps/search/Little+Stony+Point+Cold+Spring+NY" target="_blank">&#128205; Little Stony Point</a>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>Recommendation:</strong> Option A (Friday night) is better for the overall flow. You arrive relaxed, have a romantic first dinner, sleep well, and wake up refreshed for a full Saturday. Option B gets you a sunrise but starts the day on ~4 hrs sleep.
+  </div>
+</div>
+
+<!-- ==================== SATURDAY ==================== -->
+<div class="tab-content" id="saturday">
+  <div class="section-header"><span class="icon">&#9728;</span> Saturday &mdash; June 6 (Full Day)</div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">7:00 AM</div>
+      <div class="t-title">Wake Up &amp; Breakfast at B&amp;B</div>
+      <div class="t-desc">Pig Hill Inn serves breakfast in their Victorian glass conservatory. Includes fruit, coffee, omelets or European-style pancakes. Fuel up for the hike.</div>
+      <span class="tag tag-free">Included with room</span>
+    </div>
+
+    <div class="t-item highlight">
+      <div class="t-time">8:00 - 11:30 AM</div>
+      <div class="t-title">Morning Hike: Bull Hill / Mt. Taurus</div>
+      <div class="t-desc">
+        <strong>Trailhead:</strong> Washburn Trail parking, Route 9D (0.8 mi north of Cold Spring)<br>
+        <strong>Trail:</strong> 5.5-mile loop &bull; 1,200-1,500 ft elevation &bull; Moderate-challenging<br>
+        <strong>Time:</strong> 3-4 hours<br>
+        <strong>Views:</strong> Panoramic Hudson River, Storm King, West Point, Breakneck Ridge. On clear days, NYC skyline.<br>
+        <strong>Arrive by 8 AM</strong> to secure parking (free lot fills fast on June weekends).
+      </div>
+      <a class="map-link" href="https://www.google.com/maps/search/Washburn+Trail+Bull+Hill+Parking+Route+9D+Cold+Spring+NY" target="_blank">&#128205; Trailhead Parking</a>
+      <span class="tag tag-free">Free</span>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">11:30 AM</div>
+      <div class="t-title">Quick Stop: Cold Spring Farmers' Market</div>
+      <div class="t-desc">At Boscobel House, 1601 Route 9D, Garrison. Open 8:30 AM - 1 PM. Farmstead cheese, duck eggs, local honey, maple syrup, baked goods, craft wines. Pick up picnic supplies or gifts.</div>
+      <a class="map-link" href="https://www.google.com/maps/search/Boscobel+House+Gardens+1601+Route+9D+Garrison+NY" target="_blank">&#128205; Map</a>
+      <span class="tag tag-cost">Budget: ~$30-50</span>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">12:30 PM</div>
+      <div class="t-title">Lunch: Brasserie Le Bouchon</div>
+      <div class="t-desc">
+        French bistro on Main St. Moules frites, salmon bouillabaisse, crab cakes, baked Brie. Romantic even at lunch &mdash; Parisian charm, outdoor patio option.<br>
+        <strong>Hours:</strong> 12 PM - 8 PM &bull; <strong>Price:</strong> ~$25-35/person
+      </div>
+      <p><a class="phone-link" href="tel:8452657676">&#128222; (845) 265-7676</a></p>
+      <a class="map-link" href="https://www.google.com/maps/search/Brasserie+Le+Bouchon+76+Main+St+Cold+Spring+NY" target="_blank">&#128205; 76 Main Street</a>
+      <span class="tag tag-food">Pescatarian-friendly</span>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">1:30 - 3:00 PM</div>
+      <div class="t-title">Cold Spring Village Exploration</div>
+      <div class="t-desc">
+        Walk Main Street (~0.5 miles). Key stops:<br>
+        &bull; <strong>Old Souls</strong> (63 Main) &mdash; outdoor/hiking lifestyle, taxidermy, historic flags<br>
+        &bull; <strong>Cold Spring Antiques Center "The Vault"</strong> &mdash; 30+ antique vendors<br>
+        &bull; <strong>Split Rock Bookstore</strong> &mdash; indie bookshop, curated selection<br>
+        &bull; <strong>Poor George</strong> &mdash; vintage + new apparel, jewelry, apothecary<br>
+        &bull; <strong>Cold Spring General Store</strong> &mdash; local beer/cider, artisan goods<br>
+        &bull; <strong>Waterfront Gazebo</strong> &mdash; end of Main St, Hudson views, Storm King
+      </div>
+      <a class="map-link" href="https://www.google.com/maps/search/Main+Street+Cold+Spring+NY" target="_blank">&#128205; Main Street, Cold Spring</a>
+      <span class="tag tag-free">Free (shopping extra)</span>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">3:00 - 4:30 PM</div>
+      <div class="t-title">West Point Foundry Preserve</div>
+      <div class="t-desc">
+        97-acre nature preserve with Civil War-era foundry ruins. Where Lincoln's Parrott guns were made. Interpretive trails through wooded ravines past crumbling walls and industrial ruins.<br>
+        <strong>Trails:</strong> ~1.6 miles total &bull; <strong>Time:</strong> 1-1.5 hours<br>
+        <strong>Hours:</strong> Dawn to dusk &bull; Restrooms on site
+      </div>
+      <a class="map-link" href="https://www.google.com/maps/search/West+Point+Foundry+Preserve+68+Kemble+Avenue+Cold+Spring+NY" target="_blank">&#128205; 68 Kemble Avenue</a>
+      <span class="tag tag-free">Free</span>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">5:00 - 7:00 PM</div>
+      <div class="t-title">Sunset Kayak on the Hudson</div>
+      <div class="t-desc">
+        <strong>Hudson River Expeditions</strong> &mdash; 14 Market St, Cold Spring<br>
+        <strong>World's End Tour:</strong> Paddle south through the narrowest stretch of the Hudson, along Constitution Island cliffs with West Point views. Or book the <strong>Sunset/Twilight Tour</strong> for golden hour on the water.<br>
+        <strong>Duration:</strong> 2 hours &bull; <strong>Cost:</strong> $80/person<br>
+        <strong>Sunset at 8:26 PM</strong> &mdash; a 5 PM or 6 PM tour gets you prime golden hour.
+      </div>
+      <p><a class="phone-link" href="tel:8458095935">&#128222; (845) 809-5935</a></p>
+      <a class="map-link" href="https://www.google.com/maps/search/Hudson+River+Expeditions+14+Market+Street+Cold+Spring+NY" target="_blank">&#128205; 14 Market Street</a>
+      <span class="tag tag-cost">$160 for two</span>
+      <span class="tag tag-book">Book ahead</span>
+    </div>
+
+    <div class="t-item highlight">
+      <div class="t-time">7:30 - 9:30 PM</div>
+      <div class="t-title">Birthday Dinner: Cathryn's Tuscan Grill</div>
+      <div class="t-desc">
+        Contemporary Italian on Main Street. Rustic Tuscan romance &mdash; candlelit, excellent wine list. Raw bar with East &amp; West Coast oysters. Seared scallops, shrimp, smoked salmon, handmade pastas.<br>
+        <strong>Hours:</strong> 12 PM - 9:30 PM &bull; <strong>Price:</strong> ~$50-70/person<br>
+        <strong>Reserve for 7:30 PM on Resy.</strong> Since you did Hudson House Friday, this gives you a different experience.
+      </div>
+      <p><a class="phone-link" href="tel:8452655582">&#128222; (845) 265-5582</a></p>
+      <a class="map-link" href="https://www.google.com/maps/search/Cathryn's+Tuscan+Grill+91+Main+St+Cold+Spring+NY" target="_blank">&#128205; 91 Main Street</a>
+      <span class="tag tag-food">Pescatarian-excellent</span>
+      <span class="tag tag-book">Resy</span>
+    </div>
+
+    <div class="t-item">
+      <div class="t-time">9:30 PM</div>
+      <div class="t-title">Evening Walk &amp; River Views</div>
+      <div class="t-desc">Walk off dinner down to the waterfront. Moonlight on the Hudson. Storm King silhouette. This is the moment.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card card-alt">
+    <h4>Alternative Saturday Afternoon: Bannerman Castle or Storm King</h4>
+    <p>If you'd rather do Bannerman Castle or Storm King Art Center instead of the Foundry + Kayak combo, here are the details:</p>
+  </div>
+
+  <details>
+    <summary>Bannerman Castle Boat Tour (swap for 2:00-4:30 PM slot)</summary>
+    <div class="card">
+      <p><strong>Departs from:</strong> Beacon dock (across from Metro-North station)</p>
+      <p><strong>Saturday times:</strong> 11:00 AM, 12:30 PM, 2:00 PM, 3:30 PM</p>
+      <p><strong>Recommended:</strong> 2:00 PM tour</p>
+      <p><strong>Duration:</strong> ~2.5 hours (30-min boat each way + 45-min guided island tour)</p>
+      <p><strong>Cost:</strong> $45/person ($90 for two)</p>
+      <p><strong>Book at:</strong> <a href="https://bannermancastle.org/tours-events/bannerman-island-tour/" target="_blank">bannermancastle.org</a></p>
+      <p><a class="phone-link" href="tel:8458311001">&#128222; (845) 831-1001</a></p>
+      <a class="map-link" href="https://www.google.com/maps/search/Beacon+dock+Metro+North+station+Beacon+NY" target="_blank">&#128205; Beacon Dock</a>
+      <span class="tag tag-cost">$90 for two</span>
+      <span class="tag tag-book">Book ASAP - sells out</span>
+      <div class="info-box" style="margin-top:8px">Ruins of a Scottish-style castle built by arms dealer Francis Bannerman VI on a Hudson River island. 72 steps from dock to trail &mdash; wear good shoes. No refunds. Tours go rain or shine.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Storm King Art Center (swap for 2:00-5:00 PM slot)</summary>
+    <div class="card">
+      <p><strong>Address:</strong> 1 Museum Road, New Windsor, NY 12553</p>
+      <p><strong>Hours:</strong> 10 AM - 6 PM (last entry 5 PM) &bull; Open Sat &amp; Sun</p>
+      <p><strong>Time needed:</strong> 2-4 hours</p>
+      <p><strong>Cost:</strong> $25/person ($50 for two, parking included)</p>
+      <p><strong>Drive from Cold Spring:</strong> ~28 min (18 miles, across Bear Mountain Bridge)</p>
+      <a class="map-link" href="https://www.google.com/maps/search/Storm+King+Art+Center+1+Museum+Road+New+Windsor+NY" target="_blank">&#128205; Map</a>
+      <span class="tag tag-cost">$50 for two</span>
+      <div class="info-box" style="margin-top:8px">500-acre outdoor sculpture park with 100+ large-scale works across rolling hills and wildflower meadows. Wear walking shoes &mdash; lots of terrain to cover. Bring water.</div>
+    </div>
+  </details>
+</div>
+
+<!-- ==================== SUNDAY ==================== -->
+<div class="tab-content" id="sunday">
+  <div class="section-header"><span class="icon">&#127780;</span> Sunday &mdash; June 7</div>
+
+  <div class="card card-alt">
+    <h4>Pick Your Sunday Path</h4>
+    <p>Three options depending on your mood after Saturday. All get you home by 4-5 PM.</p>
+  </div>
+
+  <!-- OPTION A: Art -->
+  <div class="section-header" style="color:var(--accent3)">Option A: Art &amp; Beacon (Recommended)</div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">8:00 AM</div>
+      <div class="t-title">Breakfast at B&amp;B</div>
+      <div class="t-desc">Pig Hill Inn breakfast in the conservatory. Relax, no rush.</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">9:00 AM</div>
+      <div class="t-title">Little Stony Point Morning Walk</div>
+      <div class="t-desc">Easy 1-mile loop, 30 min. Forest trail to a sandy Hudson River beach with Storm King views directly across the water. Old mine entrance along the way. Spur trail to cliff overlook with Bannerman Castle views.</div>
+      <a class="map-link" href="https://www.google.com/maps/search/Little+Stony+Point+Cold+Spring+NY" target="_blank">&#128205; Route 9D, Cold Spring</a>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="t-item">
+      <div class="t-time">10:00 AM</div>
+      <div class="t-title">Check Out &amp; Drive to Beacon</div>
+      <div class="t-desc">Pig Hill checkout: 11 AM. Load up, 10-minute drive to Beacon.</div>
+    </div>
+    <div class="t-item highlight">
+      <div class="t-time">10:30 AM - 1:00 PM</div>
+      <div class="t-title">Dia:Beacon</div>
+      <div class="t-desc">
+        34,000 sq ft of large-scale contemporary art in a converted Nabisco factory. Richard Serra's massive steel sculptures, Dan Flavin's light installations, Andy Warhol, Agnes Martin.<br>
+        <strong>Free guided tour at 12:00 PM</strong> (included with admission).<br>
+        <strong>Hours:</strong> 10 AM - 5 PM &bull; <strong>Cost:</strong> $25/person
+      </div>
+      <p><a class="phone-link" href="tel:8452310811">&#128222; (845) 231-0811</a></p>
+      <a class="map-link" href="https://www.google.com/maps/search/Dia+Beacon+3+Beekman+Street+Beacon+NY" target="_blank">&#128205; 3 Beekman Street, Beacon</a>
+      <span class="tag tag-cost">$50 for two</span>
+    </div>
+    <div class="t-item">
+      <div class="t-time">1:00 PM</div>
+      <div class="t-title">Beacon Farmers' Market</div>
+      <div class="t-desc">Right nearby at 223 Main St, Beacon. 70+ vendors, 10 AM - 3 PM. Live music. Last chance to grab local goods.</div>
+      <a class="map-link" href="https://www.google.com/maps/search/223+Main+Street+Beacon+NY+farmers+market" target="_blank">&#128205; Map</a>
+    </div>
+    <div class="t-item">
+      <div class="t-time">1:30 PM</div>
+      <div class="t-title">Lunch: The Roundhouse</div>
+      <div class="t-desc">
+        Modern American farm-to-table dining overlooking a waterfall in a converted textile factory. Gorgeous setting for a final meal.<br>
+        <strong>Sunday brunch:</strong> 11:30 AM - 3 PM &bull; <strong>Price:</strong> ~$25-40/person<br>
+        <strong>Reserve on Tock.</strong>
+      </div>
+      <a class="map-link" href="https://www.google.com/maps/search/The+Roundhouse+2+East+Main+Street+Beacon+NY" target="_blank">&#128205; 2 East Main Street, Beacon</a>
+      <span class="tag tag-food">Pescatarian-friendly</span>
+      <span class="tag tag-book">Tock</span>
+    </div>
+    <div class="t-item">
+      <div class="t-time">2:30 - 3:00 PM</div>
+      <div class="t-title">Head Home</div>
+      <div class="t-desc">Leave before 3 PM to beat Sunday evening traffic. Reverse route: Taconic South &rarr; Saw Mill &rarr; Cross Bronx &rarr; Queens. ~1.5 hours. Home by 4:30 PM.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- OPTION B: History -->
+  <div class="section-header" style="color:var(--accent2)">Option B: History &amp; West Point</div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">8:00 AM</div>
+      <div class="t-title">Breakfast at B&amp;B</div>
+      <div class="t-desc">Pig Hill Inn breakfast.</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">9:15 AM</div>
+      <div class="t-title">Drive to West Point</div>
+      <div class="t-desc">~20 minutes south on Route 9D. Arrive 30-45 min before tour for security.</div>
+    </div>
+    <div class="t-item highlight">
+      <div class="t-time">10:00 AM - 12:30 PM</div>
+      <div class="t-title">West Point Tour: 250th River &amp; the Rock</div>
+      <div class="t-desc">
+        <strong>Special 2026 tour</strong> (June-August only). 2.5-hour outdoor walking tour of Revolutionary War sites at Fortress West Point. Small group, access to historic trails and battlefield viewpoints.<br>
+        <strong>Cost:</strong> $30/person &bull; <strong>Book online at:</strong> <a href="https://westpointtours.com/250th-river-and-the-rock/" target="_blank">westpointtours.com</a>
+      </div>
+      <div class="warn-box" style="margin-top:6px"><strong>REAL ID or passport REQUIRED.</strong> Background check runs when you book online. All sales final. No children under 12. Significant walking on uneven terrain.</div>
+      <a class="map-link" href="https://www.google.com/maps/search/West+Point+Visitor+Center+Highland+Falls+NY" target="_blank">&#128205; West Point Visitor Center</a>
+      <span class="tag tag-cost">$60 for two</span>
+      <span class="tag tag-book">Book online ASAP</span>
+    </div>
+    <div class="t-item">
+      <div class="t-time">12:45 PM</div>
+      <div class="t-title">Lunch: Riverview Restaurant, Cold Spring</div>
+      <div class="t-desc">
+        Drive back to Cold Spring (20 min). Seafood-focused menu, brick oven pizza, stunning wraparound porch with Hudson views.<br>
+        <strong>Hours:</strong> 12 PM - 9 PM Sunday &bull; <strong>Price:</strong> ~$20-35/person
+      </div>
+      <div class="warn-box" style="margin-top:6px"><strong>CASH ONLY.</strong> ATM on premises.</div>
+      <p><a class="phone-link" href="tel:8452654778">&#128222; (845) 265-4778</a></p>
+      <a class="map-link" href="https://www.google.com/maps/search/Riverview+Restaurant+45+Fair+Street+Cold+Spring+NY" target="_blank">&#128205; 45 Fair Street</a>
+      <span class="tag tag-food">Pescatarian-excellent</span>
+    </div>
+    <div class="t-item">
+      <div class="t-time">2:00 PM</div>
+      <div class="t-title">Head Home</div>
+      <div class="t-desc">Taconic route south. Home by ~3:30 PM.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- OPTION C: Nature -->
+  <div class="section-header" style="color:var(--yellow)">Option C: Nature &amp; Chill</div>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">7:30 AM</div>
+      <div class="t-title">Constitution Marsh Birdwatching</div>
+      <div class="t-desc">
+        Audubon sanctuary in Garrison. Short trail to 700-ft boardwalk over the marsh. 200+ bird species. Stunning morning light on the Hudson Highlands.<br>
+        <strong>Parking:</strong> Very limited (8 spaces). Go early!<br>
+        <strong>No dogs allowed.</strong>
+      </div>
+      <a class="map-link" href="https://www.google.com/maps/search/Constitution+Marsh+Audubon+127+Warren+Landing+Rd+Garrison+NY" target="_blank">&#128205; 127 Warren Landing Rd, Garrison</a>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="t-item">
+      <div class="t-time">9:00 AM</div>
+      <div class="t-title">Breakfast at The Foundry Rose</div>
+      <div class="t-desc">55 Main St, Cold Spring. Open 8:30 AM - 4 PM Sunday. Pancakes, omelets, brunch classics. ~$12-20/person.</div>
+      <a class="map-link" href="https://www.google.com/maps/search/The+Foundry+Rose+55+Main+Street+Cold+Spring+NY" target="_blank">&#128205; 55 Main Street</a>
+    </div>
+    <div class="t-item">
+      <div class="t-time">10:30 AM</div>
+      <div class="t-title">Denning's Point Walk, Beacon</div>
+      <div class="t-desc">Easy 1.85-mile loop on a Hudson River peninsula. Forest, shoreline, deer sightings. Combine with Long Dock Park waterfront walk.</div>
+      <a class="map-link" href="https://www.google.com/maps/search/Denning's+Point+State+Park+Beacon+NY" target="_blank">&#128205; Map</a>
+      <span class="tag tag-free">Free</span>
+    </div>
+    <div class="t-item">
+      <div class="t-time">12:00 PM</div>
+      <div class="t-title">Beacon Farmers' Market + Lunch</div>
+      <div class="t-desc">Browse the market (10 AM - 3 PM), then lunch at The Roundhouse or grab food from market vendors.</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">2:00 PM</div>
+      <div class="t-title">Head Home</div>
+      <div class="t-desc">Home by ~3:30 PM.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DINING ==================== -->
+<div class="tab-content" id="food">
+  <div class="section-header"><span class="icon">&#127860;</span> Dining Guide (Pescatarian-Friendly)</div>
+
+  <div class="card highlight">
+    <h3>Hudson House River Inn &#9733;</h3>
+    <p><strong>Best for:</strong> Friday night arrival dinner OR Saturday dinner</p>
+    <p><strong>Address:</strong> 2 Main Street, Cold Spring, NY 10516</p>
+    <p><a class="phone-link" href="tel:8452659355">&#128222; (845) 265-9355</a></p>
+    <p><strong>Hours:</strong> Fri 12-10 PM &bull; Sat 11:30 AM-10 PM</p>
+    <p><strong>Reserve:</strong> <a href="https://resy.com" target="_blank">Resy</a></p>
+    <p><strong>Views:</strong> River Room has direct Hudson views toward Storm King</p>
+    <p><strong>Price:</strong> ~$50-80/person (entrees $35-39 seafood, $44-68 steak)</p>
+
+    <details>
+      <summary>Full Pescatarian Menu</summary>
+      <p style="font-size:0.88em;color:var(--text-dim)">
+        <strong>Apps:</strong> Maryland Crabcakes $21, Coconut Shrimp $16, Steamed Littleneck Clams $21, Fresh Burrata $20, Jumbo Shrimp Cocktail $21, Crispy Brussels $16<br>
+        <strong>Soup:</strong> Lobster Bisque $16<br>
+        <strong>Entrees:</strong> Faroe Island Salmon (mustard-crabmeat crust) $37, Pesto Crusted Alaskan Cod $36, Sesame Yellowfin Tuna $35, Crabmeat Stuffed Shrimp $39, Lobster Ravioli $36<br>
+        <strong>Pasta:</strong> Spinach Ravioli alla Vodka $33, Roasted Veg Primavera $28<br>
+        <strong>Side:</strong> Lobster Mac &amp; Cheese $27
+      </p>
+    </details>
+    <p style="font-size:0.85em;color:var(--text-dim);margin-top:6px">Built in 1832. Second-oldest continuously operated inn in NYS. National Register of Historic Places.</p>
+  </div>
+
+  <div class="card">
+    <h3>Cathryn's Tuscan Grill</h3>
+    <p><strong>Best for:</strong> Saturday birthday dinner (romantic Italian)</p>
+    <p><strong>Address:</strong> 91 Main St, Cold Spring</p>
+    <p><a class="phone-link" href="tel:8452655582">&#128222; (845) 265-5582</a></p>
+    <p><strong>Hours:</strong> Sat 12-9:30 PM</p>
+    <p><strong>Reserve:</strong> <a href="https://resy.com" target="_blank">Resy</a></p>
+    <p><strong>Menu:</strong> Raw bar (E&amp;W Coast oysters), seared scallops, shrimp, smoked salmon, large pasta selection. Excellent wine list.</p>
+    <p><strong>Price:</strong> ~$40-70/person</p>
+    <p><strong>Vibe:</strong> Rustic Tuscan, candlelit, intimate. Perfect date night.</p>
+  </div>
+
+  <div class="card">
+    <h3>Riverview Restaurant</h3>
+    <p><strong>Best for:</strong> Lunch or Sunday dinner (best views in town)</p>
+    <p><strong>Address:</strong> 45 Fair Street, Cold Spring</p>
+    <p><a class="phone-link" href="tel:8452654778">&#128222; (845) 265-4778</a></p>
+    <p><strong>Hours:</strong> Sat 12-9:30 PM, Sun 12-9 PM</p>
+    <p><strong>Reserve:</strong> Resy or phone</p>
+    <p><strong>Menu:</strong> Atlantic salmon, linguine with mussels &amp; rock shrimp, shellfish stew, brick oven pizza, crispy calamari, oysters</p>
+    <p><strong>Price:</strong> ~$20-35/person</p>
+    <div class="warn-box"><strong>CASH ONLY.</strong> ATM on premises.</div>
+    <p><strong>Vibe:</strong> Second-floor wraparound porch with stunning Hudson River views. Cold Spring landmark since 1941.</p>
+  </div>
+
+  <div class="card">
+    <h3>Brasserie Le Bouchon</h3>
+    <p><strong>Best for:</strong> Casual Saturday lunch</p>
+    <p><strong>Address:</strong> 76 Main St, Cold Spring</p>
+    <p><a class="phone-link" href="tel:8452657676">&#128222; (845) 265-7676</a></p>
+    <p><strong>Hours:</strong> 12-8 PM daily (closes at 8!)</p>
+    <p><strong>Menu:</strong> Moules frites, salmon bouillabaisse, crab cakes, baked Brie</p>
+    <p><strong>Price:</strong> ~$25-35/person</p>
+    <p><strong>Vibe:</strong> Authentic French bistro, outdoor patio, Parisian charm</p>
+  </div>
+
+  <div class="card">
+    <h3>The Roundhouse (Beacon)</h3>
+    <p><strong>Best for:</strong> Sunday brunch/lunch</p>
+    <p><strong>Address:</strong> 2 East Main St, Beacon</p>
+    <p><strong>Hours:</strong> Sun brunch 11:30 AM - 3 PM</p>
+    <p><strong>Reserve:</strong> <a href="https://www.exploretock.com/theroundhouse" target="_blank">Tock</a></p>
+    <p><strong>Menu:</strong> Modern American, farm-to-table, Hudson Valley sourced. Fish dishes, veg options.</p>
+    <p><strong>Price:</strong> ~$25-40/person</p>
+    <p><strong>Vibe:</strong> Dining overlooking a waterfall in a converted textile factory. Stunning.</p>
+  </div>
+
+  <div class="card">
+    <h3>Quick Bites &amp; Casual</h3>
+    <p><strong>Cold Spring Cheese Shop</strong> &mdash; Main St. Sandwiches, charcuterie boards. Great for a riverside picnic. ~$10-15/person.</p>
+    <p><strong>The Foundry Rose</strong> &mdash; 55 Main St. Brunch/breakfast. Pancakes, omelets. Sun 8:30 AM - 4 PM. ~$12-20/person.</p>
+    <p><strong>CRO'NEST Wine Bar</strong> &mdash; 15 Main St. Wine + small plates (smoked salmon sandwiches, cheese plates). Fri 4-9 PM.</p>
+  </div>
+</div>
+
+<!-- ==================== LODGING ==================== -->
+<div class="tab-content" id="lodging">
+  <div class="section-header"><span class="icon">&#127968;</span> Where to Stay</div>
+
+  <div class="card highlight">
+    <h3>Pig Hill Inn B&amp;B &#9733; (Top Pick)</h3>
+    <p><strong>Address:</strong> 73 Main Street, Cold Spring, NY 10516</p>
+    <p><a class="phone-link" href="tel:8452659247">&#128222; (845) 265-9247</a></p>
+    <p><strong>Website:</strong> <a href="https://pighillinn.com" target="_blank">pighillinn.com</a></p>
+    <p><strong>Rooms:</strong> 9 individually decorated rooms with antiques. Some have fireplaces, woodburning stoves, jacuzzi tubs. All private bathrooms.</p>
+    <p><strong>Breakfast:</strong> Included. Victorian glass conservatory. Fruit, coffee, omelet or European-style pancakes.</p>
+    <p><strong>Rate:</strong> ~$150-200/night (estimate for June Saturday &mdash; call to confirm)</p>
+    <p><strong>Check-in:</strong> 3-7 PM &bull; <strong>Check-out:</strong> 11 AM</p>
+    <p><strong>Vibe:</strong> Romantic, historic (built 1825), cozy. #1 ranked B&amp;B in Cold Spring on TripAdvisor. Right on Main Street &mdash; walk to everything.</p>
+    <a class="map-link" href="https://www.google.com/maps/search/Pig+Hill+Inn+73+Main+Street+Cold+Spring+NY" target="_blank">&#128205; Map</a>
+    <div class="warn-box" style="margin-top:8px">Only 9 rooms &mdash; June weekends book fast. <strong>Call NOW to reserve.</strong></div>
+    <p style="margin-top:8px"><strong>Pro tip:</strong> Request a jacuzzi room for the birthday weekend.</p>
+  </div>
+
+  <div class="card">
+    <h3>Cold Spring Hotel &amp; Cafe (Backup)</h3>
+    <p><strong>Address:</strong> 124 Main Street, Cold Spring, NY 10516</p>
+    <p><a class="phone-link" href="tel:8452640824">&#128222; (845) 264-0824</a></p>
+    <p><strong>Website:</strong> <a href="https://coldspringhotelny.com" target="_blank">coldspringhotelny.com</a></p>
+    <p><strong>Rooms:</strong> 9 rooms with carved mahogany beds, stained glass, walk-in showers</p>
+    <p><strong>Rate:</strong> ~$195+/night</p>
+    <p><strong>Check-in:</strong> 1 PM &bull; <strong>Check-out:</strong> 10 AM</p>
+    <p><strong>Breakfast:</strong> Cafe downstairs (confirm if included)</p>
+    <p><strong>Vibe:</strong> Boutique, charming, slightly more modern than Pig Hill. Also on Main Street.</p>
+    <a class="map-link" href="https://www.google.com/maps/search/Cold+Spring+Hotel+124+Main+Street+Cold+Spring+NY" target="_blank">&#128205; Map</a>
+  </div>
+
+  <div class="card">
+    <h3>Holiday Inn Express Fishkill (Budget)</h3>
+    <p><strong>Address:</strong> 21 Schuyler Blvd, Fishkill, NY 12524</p>
+    <p><strong>Distance:</strong> 10 miles / 16 min from Cold Spring</p>
+    <p><strong>Rate:</strong> ~$110-150/night</p>
+    <p><strong>Breakfast:</strong> Free hot breakfast 6-10 AM</p>
+    <p><strong>Amenities:</strong> Indoor pool, fitness center, free Wi-Fi</p>
+    <p><strong>Trade-off:</strong> Saves ~$50-100 vs B&amp;Bs but loses the walkability and romance factor. You'd drive to everything.</p>
+    <a class="map-link" href="https://www.google.com/maps/search/Holiday+Inn+Express+21+Schuyler+Blvd+Fishkill+NY" target="_blank">&#128205; Map</a>
+  </div>
+</div>
+
+<!-- ==================== HISTORY ==================== -->
+<div class="tab-content" id="history">
+  <div class="section-header"><span class="icon">&#9876;</span> Historic Sites &amp; Stories</div>
+
+  <div class="card">
+    <h3>The Great Chain Across the Hudson</h3>
+    <p>In 1778, the Continental Army stretched a massive iron chain from West Point to Constitution Island &mdash; the most critical defensive engineering of the entire Revolution. The chain, with links weighing 100-150 lbs each, was designed to block British warships from sailing upriver and splitting the colonies. It held for the remainder of the war. The British never breached it.</p>
+    <p style="color:var(--text-dim);font-size:0.88em;margin-top:6px">You can see links from the original chain at Trophy Point, West Point.</p>
+  </div>
+
+  <div class="card">
+    <h3>West Point Foundry (Cold Spring)</h3>
+    <p>Established 1818 after the War of 1812 exposed America's dependence on foreign arms. The foundry produced some of the nation's first locomotives, ironclad warships, and NYC's water pipes. During the Civil War, 1,400 workers made 2,000 cannons and 3 million shells. The <strong>Parrott gun</strong>, invented here by Robert Parker Parrott, gave the Union a decisive artillery advantage. President Lincoln visited in 1862.</p>
+    <p style="margin-top:6px"><strong>Visit the ruins:</strong> West Point Foundry Preserve, 68 Kemble Ave (free, open dawn-dusk)</p>
+  </div>
+
+  <div class="card">
+    <h3>Bannerman Castle &amp; Pollepel Island</h3>
+    <p>Francis Bannerman VI, a Scottish immigrant, became America's largest private arms dealer by buying military surplus &mdash; including 90% of all captured Spanish-American War weapons. When NYC outlawed storing that much ammo within city limits, he bought Pollepel Island in 1900 and built a Scottish castle as both warehouse and advertisement ("BANNERMAN'S ISLAND ARSENAL" cast into the river-facing wall). Construction ceased at his death in 1918. In 1920, 200+ lbs of shells exploded, destroying the northwest wing. The ruins stand today as one of the Hudson's most haunting landmarks.</p>
+  </div>
+
+  <div class="card">
+    <h3>Fort Clinton &amp; Fort Montgomery (1777)</h3>
+    <p>Twin Revolutionary War fortifications near Bear Mountain, garrisoned by 600 troops under brothers George and James Clinton. On October 6, 1777, British General Sir Henry Clinton attacked as a diversion from Burgoyne's campaign. The British captured both forts &mdash; but the diversion failed. The Americans defeated Burgoyne at Saratoga, the war's turning point.</p>
+    <p style="margin-top:6px"><strong>Fort Montgomery State Historic Site:</strong> 690 Route 9W, Fort Montgomery. Free admission. Free guided tours Sat at 11 AM, 1 PM, 3 PM; Sun at 1 PM, 3 PM. ~15 min south of Cold Spring.</p>
+    <a class="map-link" href="https://www.google.com/maps/search/Fort+Montgomery+State+Historic+Site+690+Route+9W+NY" target="_blank">&#128205; Map</a>
+  </div>
+
+  <div class="card">
+    <h3>The Wappinger People</h3>
+    <p>Before Europeans arrived, the Hudson Highlands were home to the <strong>Wappinger</strong>, an Eastern Algonquian-speaking people of the Lenape nation. Cold Spring was a "decent-sized village" with several satellite communities. <strong>Denning's Point in Beacon</strong> was a major intertribal trading place. The Wappinger lived semi-sedentarily, moving between seasonal sites &mdash; women cultivated corn while hunting, fishing, and foraging supplemented the diet. After the 1685 Rombout Royal Patent granted 85,000 acres to colonists, the Wappinger were gradually displaced, joining the Lenape, Mohicans, or Iroquois by the Revolutionary War era.</p>
+  </div>
+
+  <div class="card">
+    <h3>West Point Military Academy</h3>
+    <p>America's oldest continuously occupied military post (since 1778). Washington called it "the most important post in America." The fortress controlled the narrowest point of the Hudson. Benedict Arnold's plot to surrender it to the British in 1780 was one of the most dramatic espionage events of the war. Today it trains ~4,400 cadets. The 2026 250th Anniversary tour is a special offering.</p>
+    <p style="margin-top:6px"><strong>Visitor Center:</strong> Open daily 9 AM - 4:45 PM. REAL ID required.</p>
+  </div>
+
+  <div class="card">
+    <h3>Washington's Headquarters (Newburgh)</h3>
+    <p>The Hasbrouck House, where Washington headquartered from April 1782 to August 1783 &mdash; his longest stay at any HQ during the war. Here he rejected the offer of kingship (the Nicola Letter) and issued the Proclamation of Peace.</p>
+    <p><strong>Address:</strong> 84 Liberty St, Newburgh &bull; <strong>Sunday hours:</strong> 1-5 PM &bull; <strong>Cost:</strong> $7 adult</p>
+    <div class="warn-box">The Hasbrouck House itself is closed for restoration (indefinite). The museum building is open.</div>
+    <a class="map-link" href="https://www.google.com/maps/search/Washington's+Headquarters+84+Liberty+Street+Newburgh+NY" target="_blank">&#128205; Map</a>
+  </div>
+
+  <div class="card">
+    <h3>Putnam History Museum</h3>
+    <p>Cold Spring's local history museum with West Point Foundry exhibits and Hudson Highlands history.</p>
+    <p><strong>Address:</strong> 63 Chestnut St, Cold Spring &bull; <strong>Hours:</strong> Wed-Sun 11 AM-5 PM &bull; Free/donation</p>
+    <a class="map-link" href="https://www.google.com/maps/search/Putnam+History+Museum+63+Chestnut+Street+Cold+Spring+NY" target="_blank">&#128205; Map</a>
+  </div>
+</div>
+
+<!-- ==================== BUDGET ==================== -->
+<div class="tab-content" id="budget">
+  <div class="section-header"><span class="icon">&#128176;</span> Budget Breakdown</div>
+
+  <div class="card">
+    <h3>Recommended Itinerary Budget</h3>
+    <p style="font-size:0.85em;color:var(--text-dim);margin-bottom:12px">Based on: Friday night arrival, Pig Hill Inn, kayaking Saturday, Dia:Beacon Sunday</p>
+    <table class="budget-table">
+      <tr><th>Category</th><th>Item</th><th style="text-align:right">Cost</th></tr>
+      <tr><td>Travel</td><td>Gas round trip (~130 mi)</td><td style="text-align:right">$24</td></tr>
+      <tr><td>Travel</td><td>Tolls (Taconic route = free)</td><td style="text-align:right">$0</td></tr>
+      <tr><td>Lodging</td><td>Pig Hill Inn (1 night, Sat)</td><td style="text-align:right">$175 <span class="est">(est.)</span></td></tr>
+      <tr><td>Dining</td><td>Friday late dinner (HH Inn &mdash; apps + drinks)</td><td style="text-align:right">$80</td></tr>
+      <tr><td>Dining</td><td>Saturday breakfast (B&amp;B included)</td><td style="text-align:right">$0</td></tr>
+      <tr><td>Dining</td><td>Saturday lunch (Brasserie Le Bouchon)</td><td style="text-align:right">$60</td></tr>
+      <tr><td>Dining</td><td>Saturday dinner (Cathryn's Tuscan Grill)</td><td style="text-align:right">$160</td></tr>
+      <tr><td>Dining</td><td>Sunday breakfast (B&amp;B included)</td><td style="text-align:right">$0</td></tr>
+      <tr><td>Dining</td><td>Sunday lunch (The Roundhouse)</td><td style="text-align:right">$70</td></tr>
+      <tr><td>Activity</td><td>Bull Hill hike</td><td style="text-align:right;color:var(--green)">Free</td></tr>
+      <tr><td>Activity</td><td>Kayaking &mdash; 2 people ($80 ea)</td><td style="text-align:right">$160</td></tr>
+      <tr><td>Activity</td><td>Dia:Beacon &mdash; 2 people ($25 ea)</td><td style="text-align:right">$50</td></tr>
+      <tr><td>Activity</td><td>West Point Foundry Preserve</td><td style="text-align:right;color:var(--green)">Free</td></tr>
+      <tr><td>Shopping</td><td>Farmers market + Main St shopping</td><td style="text-align:right">$60</td></tr>
+      <tr><td>Tips</td><td>Restaurant tips (~20%)</td><td style="text-align:right">$75</td></tr>
+      <tr><td>Buffer</td><td>Incidentals, snacks, drinks</td><td style="text-align:right">$40</td></tr>
+      <tr class="total-row"><td colspan="2"><strong>TOTAL (Recommended Plan)</strong></td><td style="text-align:right"><strong>~$954</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="success-box">
+    <strong>Well within the $1,500 budget.</strong> You have ~$546 of headroom for upgrades like Bannerman Castle ($90), Storm King ($50), a nicer wine at dinner, or a jacuzzi room upgrade at Pig Hill.
+  </div>
+
+  <div class="card">
+    <h3>Budget vs Splurge Options</h3>
+    <table class="budget-table">
+      <tr><th>Swap</th><th>Save / Add</th></tr>
+      <tr><td>Holiday Inn instead of B&amp;B</td><td style="text-align:right;color:var(--green)">Save ~$50</td></tr>
+      <tr><td>Add Bannerman Castle ($45 ea)</td><td style="text-align:right;color:var(--yellow)">Add $90</td></tr>
+      <tr><td>Add Storm King ($25 ea)</td><td style="text-align:right;color:var(--yellow)">Add $50</td></tr>
+      <tr><td>Kayak Bannerman tour instead ($130 ea)</td><td style="text-align:right;color:var(--yellow)">Add $100</td></tr>
+      <tr><td>Add West Point tour ($30 ea)</td><td style="text-align:right;color:var(--yellow)">Add $60</td></tr>
+      <tr><td>Skip kayaking, do free activities only</td><td style="text-align:right;color:var(--green)">Save $160</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Max Splurge Scenario</h3>
+    <p>Base plan ($954) + Bannerman ($90) + West Point tour ($60) + extra wine/cocktails ($50) = <strong>~$1,154</strong></p>
+    <p style="color:var(--green);font-weight:700;margin-top:6px">Still $346 under budget.</p>
+  </div>
+</div>
+
+<!-- ==================== PACKING ==================== -->
+<div class="tab-content" id="packing">
+  <div class="section-header"><span class="icon">&#127890;</span> Packing Checklist</div>
+
+  <div class="card">
+    <h3>Hiking Gear</h3>
+    <div class="checklist">
+      <label><input type="checkbox"><span>Hiking boots or sturdy trail shoes</span></label>
+      <label><input type="checkbox"><span>Hiking socks (moisture-wicking)</span></label>
+      <label><input type="checkbox"><span>Daypack / small backpack</span></label>
+      <label><input type="checkbox"><span>Water bottles (at least 2L per person for June heat)</span></label>
+      <label><input type="checkbox"><span>Trail snacks (granola bars, nuts, fruit)</span></label>
+      <label><input type="checkbox"><span>Sunscreen SPF 50+</span></label>
+      <label><input type="checkbox"><span>Hat / baseball cap</span></label>
+      <label><input type="checkbox"><span>Sunglasses</span></label>
+      <label><input type="checkbox"><span>Bug spray (ticks + mosquitoes in June!)</span></label>
+      <label><input type="checkbox"><span>Light rain jacket (June = wettest month)</span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Dinner &amp; Evening</h3>
+    <div class="checklist">
+      <label><input type="checkbox"><span>Nice shirt / blouse (smart casual for dinner)</span></label>
+      <label><input type="checkbox"><span>Dress or nice pants</span></label>
+      <label><input type="checkbox"><span>Comfortable walking shoes (cobblestone Main St)</span></label>
+      <label><input type="checkbox"><span>Light jacket or wrap (evenings drop to 60&deg;F)</span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Water Activities (Kayaking)</h3>
+    <div class="checklist">
+      <label><input type="checkbox"><span>Quick-dry clothes or activewear</span></label>
+      <label><input type="checkbox"><span>Water shoes or sandals with straps</span></label>
+      <label><input type="checkbox"><span>Change of dry clothes for after</span></label>
+      <label><input type="checkbox"><span>Waterproof phone case / dry bag</span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Picnic &amp; Market Supplies</h3>
+    <div class="checklist">
+      <label><input type="checkbox"><span>Reusable tote bags (for farmers market)</span></label>
+      <label><input type="checkbox"><span>Small cooler or insulated bag</span></label>
+      <label><input type="checkbox"><span>Blanket (riverside picnic option)</span></label>
+      <label><input type="checkbox"><span>Corkscrew (for any wine purchased)</span></label>
+      <label><input type="checkbox"><span>Paper towels / napkins</span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Tech &amp; Extras</h3>
+    <div class="checklist">
+      <label><input type="checkbox"><span>Camera (views are worth it)</span></label>
+      <label><input type="checkbox"><span>Binoculars (birdwatching at Constitution Marsh)</span></label>
+      <label><input type="checkbox"><span>Phone charger + car charger</span></label>
+      <label><input type="checkbox"><span>E-ZPass (if taking Thruway route)</span></label>
+      <label><input type="checkbox"><span>Cash (Riverview is CASH ONLY, also for farmers market)</span></label>
+      <label><input type="checkbox"><span>IDs (REAL ID if doing West Point tour)</span></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Birthday Touches</h3>
+    <div class="checklist">
+      <label><input type="checkbox"><span>Birthday card</span></label>
+      <label><input type="checkbox"><span>Small gift (surprise at dinner?)</span></label>
+      <label><input type="checkbox"><span>Bluetooth speaker (for the drive / waterfront)</span></label>
+      <label><input type="checkbox"><span>Her favorite snacks for the car</span></label>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== BOOK NOW ==================== -->
+<div class="tab-content" id="actions">
+  <div class="section-header"><span class="icon">&#9888;</span> Book These NOW (June weekends sell out)</div>
+
+  <div class="card highlight">
+    <h3>Priority 1: Lodging</h3>
+    <p>Call Pig Hill Inn for Saturday June 6 availability. Ask for a jacuzzi room.</p>
+    <p><a class="action-btn" href="tel:8452659247">&#128222; Call Pig Hill Inn</a></p>
+    <p style="margin-top:6px;font-size:0.85em;color:var(--text-dim)">If booked, try Cold Spring Hotel: <a href="tel:8452640824">(845) 264-0824</a></p>
+  </div>
+
+  <div class="card highlight">
+    <h3>Priority 2: Saturday Dinner</h3>
+    <p>Reserve Cathryn's Tuscan Grill on Resy for Saturday June 6, 7:30 PM, party of 2.</p>
+    <p><a class="action-btn" href="https://resy.com" target="_blank">Open Resy</a></p>
+    <p style="margin-top:6px;font-size:0.85em;color:var(--text-dim)">Also book Hudson House for Friday night ~9 PM if doing Option A.</p>
+  </div>
+
+  <div class="card highlight">
+    <h3>Priority 3: Kayaking</h3>
+    <p>Confirm Hudson River Expeditions is open for June 2026 and book a Saturday afternoon tour.</p>
+    <p><a class="action-btn" href="tel:8458095935">&#128222; Call Hudson River Expeditions</a></p>
+    <p><a class="action-btn" href="https://www.hudsonriverexpeditions.com/cold-spring-schedule.html" target="_blank">Check Schedule</a></p>
+  </div>
+
+  <div class="card">
+    <h3>Priority 4: Bannerman Castle (if adding)</h3>
+    <p>Book the 2:00 PM Saturday tour. Sells out quickly.</p>
+    <p><a class="action-btn" href="https://bannermancastle.org/tours-events/bannerman-island-tour/" target="_blank">Book Bannerman Tour</a></p>
+  </div>
+
+  <div class="card">
+    <h3>Priority 5: West Point Tour (if doing Sunday Option B)</h3>
+    <p>Book the 250th River &amp; the Rock tour for Sunday June 7. REAL ID required.</p>
+    <p><a class="action-btn" href="https://westpointtours.com/250th-river-and-the-rock/" target="_blank">Book West Point Tour</a></p>
+  </div>
+
+  <div class="card">
+    <h3>Priority 6: Sunday Lunch</h3>
+    <p>Reserve The Roundhouse for Sunday brunch, ~1:00 PM, party of 2.</p>
+    <p><a class="action-btn" href="https://www.exploretock.com/theroundhouse" target="_blank">Book on Tock</a></p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card card-alt">
+    <h3>Things That Don't Need Booking</h3>
+    <p>&#10003; Bull Hill hike &mdash; just show up early (8 AM) for parking<br>
+    &#10003; Farmers markets &mdash; walk up<br>
+    &#10003; Cold Spring village shops &mdash; walk up<br>
+    &#10003; West Point Foundry Preserve &mdash; walk up, free<br>
+    &#10003; Little Stony Point &mdash; walk up, free<br>
+    &#10003; Dia:Beacon &mdash; tickets at the door, or online at <a href="https://diaart.org/visit/tickets" target="_blank">diaart.org</a><br>
+    &#10003; Fort Montgomery &mdash; free guided tours Sat/Sun
+    </p>
+  </div>
+
+  <div class="warn-box" style="margin-top:16px">
+    <strong>Items flagged as unverified:</strong><br>
+    &bull; Pig Hill Inn exact June Saturday rate (call to confirm)<br>
+    &bull; Hudson River Expeditions may show "temp closed" on Yelp (winter listing &mdash; call to confirm June)<br>
+    &bull; Cold Spring Hotel breakfast inclusion (call to confirm)<br>
+    &bull; Riverview Restaurant cash-only policy (may have changed &mdash; confirm)<br>
+    &bull; Hudson Hil's Cafe may be permanently closed (skip, use Foundry Rose instead)
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b => {
+    if (b.getAttribute('onclick').includes(id)) b.classList.add('active');
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
